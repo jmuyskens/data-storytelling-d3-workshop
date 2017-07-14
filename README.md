@@ -12,6 +12,8 @@ d3 is a powerful, low level toolkit for creating data-driven documents. It is ov
 
 [Docs: everything D3 can do](https://github.com/d3/d3/blob/master/API.md)
 
+[Blockbuilder: write your code here in this in interactive editor](http://blockbuilder.org/jmuyskens/4a3c352e1979e3d61eac78ffa8c2f205)
+
 ## 2. Intro to SVG
 
 Scalable Vector Graphics is a vector image format. It can be viewed with modern browsers and edited with programs like Adobe Illustrator or Inkscape (open source).
