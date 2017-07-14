@@ -36,7 +36,7 @@ TASK: draw the same shape with d3
 
 [what it should look like](http://blockbuilder.org/jmuyskens/8f3479da5a5e6c39354c3d91eb9f3420)
 
-# 4. SVG grouping and transforming
+## 4. SVG grouping and transforming
 - [Docs: SVG g](https://developer.mozilla.org/en-US/docs/Web/SVG/Element/g)
 - [Docs: SVG transform attribute](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/transform)
 
@@ -143,7 +143,7 @@ Now repeat the excercise using `.entries`. Note that the structure changes.
 
 http://blockbuilder.org/jmuyskens/4a0e5f282699b88082bf426b10ee1d21
 
-# 11. Advanced update pattern
+## 11. Advanced update pattern
 
 docs: enter pattern example
 
