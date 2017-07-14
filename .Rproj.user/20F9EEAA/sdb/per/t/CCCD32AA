@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "library(dplyr)\nlibrary(tidyr)\nlibrary(here)\nlibrary(ggplot2)\nhere()\nlife.expectancy <- read.csv(here(\"oecd_life_expectancy.csv\"))\nhealth.spending <- read.csv(here(\"oecd_health_spending.csv\"))\n\noecd <-\n  health.spending %>%\n  bind_rows(life.expectancy) %>%\n  select(LOCATION, TIME, INDICATOR, Value) %>%\n  spread(INDICATOR, Value) %>%\n  filter(TIME > 1970)\n  \nwrite.csv(oecd, \"oecd.csv\")",
+    "created" : 1499827455358.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3500004057",
+    "id" : "CCCD32AA",
+    "lastKnownWriteTime" : 1499828715,
+    "last_content_update" : 1499828715197,
+    "path" : "~/Documents/data-storytelling-d3-workshop/oecd.R",
+    "project_path" : "oecd.R",
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

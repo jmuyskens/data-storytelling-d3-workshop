@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style>
+		.axis path {
+			display: none;
+		}
+
+		.axis.y line {
+			stroke: #999;
+		}
+
+		.axis.x line {
+			stroke: #999;
+			stroke-dasharray: 2px 3px;
+		}
+
+		path.country {
+			fill: none;
+			stroke: #333;
+		}
+
+
+	</style>
+</head>
+<body>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<button onClick="i = 0">Restart</button>
+<script>
+var i = 0;
+d3.csv("oecd.csv", function(data) {
+	var margin = {
+		"top": 20, "right": 20, "bottom": 20, "left": 20
+	};
+
+	data = data.filter(function(d) {
+		return d.HEALTHEXP !== "NA" && d.LIFEEXP !== "NA";
+	});
+
+	var width = 700 - margin.left - margin.right;
+	var height = 500 - margin.top - margin.bottom;
+	var xScale = d3.scaleLinear()
+		.domain([0, d3.max(data.map(function(d) { return +d.HEALTHEXP; }))])
+		.range([0, width]);
+
+	var yScale = d3.scaleLinear()
+		.domain(d3.extent(data.map(function(d) { return +d.LIFEEXP; })))
+		.range([height, 0]);
+
+	var xAxis = d3.axisBottom(xScale).tickSize(height).ticks(5);
+	var yAxis = d3.axisLeft(yScale).tickSize(width).ticks(5);
+
+	var xAccessor = function(d) { return xScale(+d.HEALTHEXP); };
+	var yAccessor = function(d) { return yScale(+d.LIFEEXP); };
+
+	var path = d3.line().x(xAccessor).y(yAccessor);
+
+
+	var dataByYear = d3.nest()
+		.key(d => d.TIME)
+		.entries(data);
+
+	function translate(x, y) {
+		return 'translate(' + x + ',' + y + ')';
+	}
+
+	var INTERVAL = 250;
+
+	var svg = d3.select('body').append('svg')
+		.attr('width', width + margin.left + margin.right)
+		.attr('height', height + margin.top + margin.bottom)
+		.append('g')
+		.attr('transform', translate(margin.left, margin.top));
+
+	svg.append('g').attr('class', 'axis x').call(xAxis);
+	svg.append('g').attr('class', 'axis y').attr('transform', translate(width, 0)).call(yAxis);
+
+	function update(i) {
+
+		var circles = svg.selectAll('circle')
+			.data(dataByYear[i].values, function(d) { return d.LOCATION; });
+
+		circles.exit().transition().duration(INTERVAL).attr('r', 0).remove();
+
+		circles.enter().append('circle')
+			.attr('r', 0)
+			.attr('transform', function(d) { return translate(xScale(+d.HEALTHEXP), yScale(+d.LIFEEXP)); })
+			.merge(circles)
+			.transition().duration(INTERVAL)
+			.attr('transform', function(d) { return translate(xScale(+d.HEALTHEXP), yScale(+d.LIFEEXP)); })
+			.attr('r', 3);
+
+		var nestedByCountry = d3.nest()
+			.key(function(d) { return d.LOCATION; })
+			.entries(data.filter(function(d) { return d.TIME <= dataByYear[i].key}));
+
+		var paths = svg.selectAll('path.country')
+			.data(nestedByCountry, function(d) { return d.key; });
+
+		paths.exit().remove();
+
+		paths.enter().append('path')
+			.attr('class', 'country')
+			.merge(paths)
+			.transition().duration(INTERVAL)
+			.attr('d', function(d) { return path(d.values); });
+
+		var labels = svg.selectAll('text.label')
+			.data(dataByYear[i].values.filter(function(d) { return d.LOCATION === "USA" || d.LOCATION === "JPN" || d.LOCATION === "CHE" }), function(d) { return d.LOCATION; })
+
+		labels.exit().remove();
+
+		labels.enter().append('text')
+			.text(function(d) { return d.LOCATION; })
+			.attr('class', 'label')
+			.attr('dx', 5)
+			.attr('dy', 3)
+			.attr('transform', function(d) { return translate(xScale(+d.HEALTHEXP), yScale(+d.LIFEEXP)); })
+			.merge(labels)
+			.transition().duration(INTERVAL)
+			.attr('transform', function(d) { return translate(xScale(+d.HEALTHEXP), yScale(+d.LIFEEXP)); });
+
+	}
+
+	var interval = d3.interval(function() {
+		if (i < dataByYear.length - 1) {
+			update(i);
+			document.title = dataByYear[i].key;
+			i++;
+		}
+	}, INTERVAL);
+
+});
+</script>
+</body>
+</html>

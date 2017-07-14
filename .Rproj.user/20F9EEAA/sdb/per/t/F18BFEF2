@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1499827526625.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "F18BFEF2",
+    "lastKnownWriteTime" : 0,
+    "last_content_update" : 1499827526625,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "FCF3A1D3",
+        "caption" : "health.spending",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=health.spending&cache_key=FCF3A1D3",
+        "displayedObservations" : "1457",
+        "environment" : "",
+        "object" : "health.spending",
+        "preview" : "0",
+        "totalObservations" : "1457",
+        "variables" : "8"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

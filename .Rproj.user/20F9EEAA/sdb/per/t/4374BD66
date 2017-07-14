@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "all: oecd.csv\n\nclean:\n\trm oecd_life_expectancy.csv\n\trm oecd_health_spending.csv\n\trm oecd.csv\n\noecd_life_expectancy.csv:\n\tcurl \"https://stats.oecd.org/sdmx-json/data/DP_LIVE/.LIFEEXP.TOT.YR.A/OECD?contentType=csv&detail=code&separator=comma&csv-lang=en&startPeriod=1960&endPeriod=2016\" --output oecd_life_expectancy.csv\n\t\noecd_health_spending.csv:\n\tcurl \"https://stats.oecd.org/sdmx-json/data/DP_LIVE/.HEALTHEXP.TOT.USD_CAP.A/OECD?contentType=csv&detail=code&separator=comma&csv-lang=en&startPeriod=1970&endPeriod=2016\" --output oecd_health_spending.csv\n\t\noecd.csv: oecd_life_expectancy.csv oecd_health_spending.csv\n\tRscript oecd.R",
+    "created" : 1499827632655.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "927569459",
+    "id" : "4374BD66",
+    "lastKnownWriteTime" : 1499828765,
+    "last_content_update" : 1499828765154,
+    "path" : "~/Documents/data-storytelling-d3-workshop/Makefile",
+    "project_path" : "Makefile",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "makefile"
+}
