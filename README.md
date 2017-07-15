@@ -207,7 +207,7 @@ Task: add transition to text. Try out different easing patterns.
 
 # what's in the advanced class
 - Voronoi
-- Layouts (force, heirarchy)
+- Layouts (force, hierarchy)
 - Geo tools
 - Modules
 - Behaviors (drag and zoom)
