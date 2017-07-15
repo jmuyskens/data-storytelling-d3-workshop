@@ -1,6 +1,6 @@
 # Data storytelling D3 workshop
 
-Workshop given at AAAS data storytelling conference by John Muyskens on Friday July 14, 2017
+Workshop given at AAAS data storytelling conference by John Muyskens on Friday July 14, 2017.
 
 ## 1. Intro to this workshop
 - goal is for you to get a feel for library and get comfortable reading docs
@@ -12,7 +12,11 @@ d3 is a powerful, low level toolkit for creating data-driven documents. It is ov
 
 [Docs: everything D3 can do](https://github.com/d3/d3/blob/master/API.md)
 
-[Blockbuilder: write your code here in this in interactive editor](http://blockbuilder.org/jmuyskens/4a3c352e1979e3d61eac78ffa8c2f205)
+We will make an animated chart together that shows the relationship between health spending and life expectancy using data from the OECD. This chart was inspired by Peter Aldhous ([you can view his implementation in R here](https://github.com/BuzzFeedNews/2017-05-us-health-care/)).
+
+Each step involves reading some documentation, then writing a few lines of code. If you get stuck, there is a link at the end of each step to a working implementation.
+
+We will be using Blockbuilder to write code. Blockbuilder is a code editor that runs in your browser and shows you the results which refresh as you write. If you have a GitHub account, you can log in and save your code as Gists. [Here's a link to the starting point for our workshop.](http://blockbuilder.org/jmuyskens/4a3c352e1979e3d61eac78ffa8c2f205)
 
 ## 2. Intro to SVG
 
